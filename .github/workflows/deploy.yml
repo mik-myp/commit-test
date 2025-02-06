@@ -11,7 +11,10 @@ jobs:
           password: ${{ secrets.SSH_PWD }}
           script_stop: true
           script: |
+            cd /root/resource/nginx/
             ls -al
-            touch test.txt
-            echo "Hello World" > test.txt
-            cat test.txt
+            rm -rf commit-test
+            git clone https://github.com/mik-myp/commit-test.git -b ${{ github.ref_name }}
+            cd commit-test
+            npm install
+            npm run build
