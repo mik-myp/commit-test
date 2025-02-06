@@ -1,7 +1,7 @@
 name: Deploy commit-test
 on: [push]
 jobs:
-  Deplot:
+  Deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: appleboy/ssh-action@v0.1.7
@@ -13,8 +13,5 @@ jobs:
           script: |
             cd /root/resource/nginx/
             ls -al
-            rm -rf commit-test
-            git clone https://github.com/mik-myp/commit-test.git -b ${{ github.ref_name }}
             cd commit-test
-            npm install
             npm run build
